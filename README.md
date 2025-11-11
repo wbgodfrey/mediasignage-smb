@@ -209,6 +209,56 @@ VITE_API_URL=http://localhost:3001/api
 - CORS protection
 - SQL injection prevention (Prisma ORM)
 
+## Deployment
+
+### Deploying to Vercel (Frontend)
+
+The frontend is configured to deploy automatically to Vercel:
+
+1. **Connect your GitHub repository** to Vercel
+2. **Import the project** - Vercel will auto-detect the Vite configuration
+3. **Configure environment variables** in Vercel dashboard:
+   - `VITE_API_URL` - Your backend API URL (e.g., your Railway/Render backend URL)
+4. **Deploy** - Vercel will build from the `frontend` directory
+
+The `vercel.json` files are already configured for proper React Router support.
+
+### Deploying Backend (Recommended: Railway or Render)
+
+The backend requires a Node.js environment with PostgreSQL. Recommended platforms:
+
+**Railway:**
+1. Create new project from GitHub repo
+2. Add PostgreSQL database service
+3. Set root directory to `backend`
+4. Configure environment variables
+5. Deploy
+
+**Render:**
+1. Create new Web Service from GitHub repo
+2. Set root directory to `backend`
+3. Build command: `npm install && npm run build`
+4. Start command: `npm start`
+5. Add PostgreSQL database
+6. Configure environment variables
+
+**Required Backend Environment Variables:**
+```
+DATABASE_URL=<your-postgresql-connection-string>
+JWT_SECRET=<random-secure-string>
+PORT=3001
+NODE_ENV=production
+UPLOAD_DIR=./uploads
+```
+
+### Important Deployment Notes
+
+- The backend and frontend must be deployed separately
+- Update `VITE_API_URL` in frontend to point to your deployed backend
+- Enable CORS for your frontend domain in the backend
+- Set up persistent storage for uploads in production
+- Use environment-specific secrets (never commit `.env` files)
+
 ## Future Enhancements
 
 - Real-time player synchronization with WebSockets
