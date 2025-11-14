@@ -1,5 +1,5 @@
 import express from 'express';
-import { authenticate } from '../middleware/auth.js';
+import { mockAuthenticate } from '../middleware/mockAuth.js';
 import {
   createPlaylist,
   getAllPlaylists,
@@ -12,12 +12,12 @@ import {
 
 const router = express.Router();
 
-router.post('/', authenticate, createPlaylist);
-router.get('/', authenticate, getAllPlaylists);
-router.get('/:id', authenticate, getPlaylist);
-router.put('/:id', authenticate, updatePlaylist);
-router.delete('/:id', authenticate, deletePlaylist);
-router.post('/:id/content', authenticate, addContentToPlaylist);
-router.delete('/:id/content/:contentId', authenticate, removeContentFromPlaylist);
+router.post('/', mockAuthenticate, createPlaylist);
+router.get('/', mockAuthenticate, getAllPlaylists);
+router.get('/:id', mockAuthenticate, getPlaylist);
+router.put('/:id', mockAuthenticate, updatePlaylist);
+router.delete('/:id', mockAuthenticate, deletePlaylist);
+router.post('/:id/content', mockAuthenticate, addContentToPlaylist);
+router.delete('/:id/content/:contentId', mockAuthenticate, removeContentFromPlaylist);
 
 export default router;

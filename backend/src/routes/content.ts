@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { authenticate } from '../middleware/auth.js';
+import { mockAuthenticate } from '../middleware/mockAuth.js';
 import {
   uploadContent,
   getAllContent,
@@ -37,10 +37,10 @@ const upload = multer({
   },
 });
 
-router.post('/', authenticate, upload.single('file'), uploadContent);
-router.get('/', authenticate, getAllContent);
-router.get('/:id', authenticate, getContent);
-router.put('/:id', authenticate, updateContent);
-router.delete('/:id', authenticate, deleteContent);
+router.post('/', mockAuthenticate, upload.single('file'), uploadContent);
+router.get('/', mockAuthenticate, getAllContent);
+router.get('/:id', mockAuthenticate, getContent);
+router.put('/:id', mockAuthenticate, updateContent);
+router.delete('/:id', mockAuthenticate, deleteContent);
 
 export default router;

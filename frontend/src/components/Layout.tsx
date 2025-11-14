@@ -1,15 +1,7 @@
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export default function Layout() {
-  const { user, logout } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
 
   const navItems = [
     { path: '/', label: 'Content' },
@@ -41,15 +33,6 @@ export default function Layout() {
                   </Link>
                 ))}
               </div>
-            </div>
-            <div className="flex items-center">
-              <span className="text-sm text-gray-700 mr-4">{user?.email}</span>
-              <button
-                onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-              >
-                Logout
-              </button>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { authenticate } from '../middleware/auth.js';
+import { mockAuthenticate } from '../middleware/mockAuth.js';
 import {
   createPlayer,
   getAllPlayers,
@@ -39,12 +39,12 @@ const upload = multer({
   },
 });
 
-router.post('/', authenticate, createPlayer);
-router.get('/', authenticate, getAllPlayers);
-router.get('/:id', authenticate, getPlayer);
-router.put('/:id', authenticate, updatePlayer);
-router.delete('/:id', authenticate, deletePlayer);
-router.post('/:id/status', authenticate, updatePlayerStatus);
-router.post('/:id/screenshot', authenticate, upload.single('screenshot'), uploadScreenshot);
+router.post('/', mockAuthenticate, createPlayer);
+router.get('/', mockAuthenticate, getAllPlayers);
+router.get('/:id', mockAuthenticate, getPlayer);
+router.put('/:id', mockAuthenticate, updatePlayer);
+router.delete('/:id', mockAuthenticate, deletePlayer);
+router.post('/:id/status', mockAuthenticate, updatePlayerStatus);
+router.post('/:id/screenshot', mockAuthenticate, upload.single('screenshot'), uploadScreenshot);
 
 export default router;

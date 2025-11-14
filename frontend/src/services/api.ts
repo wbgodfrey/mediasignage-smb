@@ -6,24 +6,6 @@ const api = axios.create({
   baseURL: API_URL,
 });
 
-// Add auth token to requests
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
-// Auth API
-export const authAPI = {
-  register: (data: { email: string; password: string; name?: string }) =>
-    api.post('/auth/register', data),
-  login: (data: { email: string; password: string }) =>
-    api.post('/auth/login', data),
-  getMe: () => api.get('/auth/me'),
-};
-
 // Content API
 export const contentAPI = {
   getAll: () => api.get('/content'),
