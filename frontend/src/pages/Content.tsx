@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { contentAPI } from '../services/api';
-import { Content as ContentType } from '../types';
+import type { Content as ContentType } from '../types';
 
 export default function Content() {
   const [showUploadModal, setShowUploadModal] = useState(false);

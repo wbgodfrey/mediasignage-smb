@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { playlistAPI, contentAPI } from '../services/api';
-import { Playlist, Content } from '../types';
+import type { Playlist, Content } from '../types';
 
 export default function PlaylistDetail() {
   const { id } = useParams<{ id: string }>();
@@ -156,7 +156,6 @@ function AddContentModal({
   });
 
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  const queryClient = useQueryClient();
 
   const existingContentIds = new Set(playlist.playlistContents.map(pc => pc.contentId));
   const availableContent = allContent?.filter(c => !existingContentIds.has(c.id)) || [];

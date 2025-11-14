@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { playerAPI, playlistAPI } from '../services/api';
-import { Player, Playlist } from '../types';
+import type { Player, Playlist } from '../types';
 
 export default function Players() {
   const [showCreateModal, setShowCreateModal] = useState(false);
